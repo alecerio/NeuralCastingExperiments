@@ -26,12 +26,12 @@ int main() {
     run_inference(in_noisy, in_hidden1, in_hidden2, output, out_hidden1, out_hidden2);
     freenn();
 
-    for(int i=0; i<OUTPUT_SIZE; i++) {
-        printf("%f ", output[i]);
-        if((i+1)%4 == 0)
-            printf("\n");
-    }
-    printf("\n");
+    //for(int i=0; i<OUTPUT_SIZE; i++) {
+    //    printf("%f ", output[i]);
+    //    if((i+1)%4 == 0)
+    //        printf("\n");
+    //}
+    //printf("\n");
 
     return 0;
 }
