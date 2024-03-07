@@ -43,7 +43,7 @@ class Model(nn.Module):
 
 import torch.onnx
 
-hidden_size = 25
+hidden_size = 1000
 
 # Instantiate the model
 model = Model(hidden_size)
@@ -56,7 +56,7 @@ h1 = torch.zeros(1, 1, hidden_size)
 h2 = torch.zeros(1, 1, hidden_size)
 
 # Export the model to ONNX format
-onnx_path = "model2.onnx"
+onnx_path = "nsnet_HS" + str(hidden_size) + ".onnx"
 torch.onnx.export(model, (dummy_input, h1, h2), onnx_path, opset_version=14)
 
 print(f"Model exported to {onnx_path}")
