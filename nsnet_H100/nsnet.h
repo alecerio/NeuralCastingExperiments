@@ -13,6 +13,23 @@ typedef float float32_t;
 
 #define NUM_THREADS (4)
 
+#define FC1MATMUL (0)
+#define FC1ADD (1)
+#define GRU1TRANSPOSE (2)
+#define GRU1GRU (3)
+#define GRU1SQUEEZE (4)
+#define GRU2GRU (5)
+#define GRU2SQUEEZE (6)
+#define GRU2TRANSPOSE (7)
+#define FC3MATMUL (8)
+#define FC3ADD (9)
+#define RELURELU (10)
+#define FC4MATMUL (11)
+#define FC4ADD (12)
+#define RELU1RELU (13)
+#define FC2MATMUL (14)
+#define FC2ADD (15)
+#define SIGMOIDSIGMOID (16)
 
 #define READMAT(OUT_MATRIX, SIZE, MATRIX_NAME, TYPE) \
     OUT_MATRIX = (TYPE*) malloc(SIZE * sizeof(TYPE)); \
@@ -42,4 +59,4 @@ void allocnn();
 // freenn
 void freenn();
 
-void run_inference(float32_t* tensor_onnxMatMul_0, float32_t* tensor_hidden1, float32_t* tensor_hidden, float32_t* tensor_163, float32_t* tensor_84, float32_t* tensor_148);
+void run_inference(float32_t* tensor_onnxMatMul_0, float32_t* tensor_hidden1, float32_t* tensor_hidden, float32_t* tensor_163, float32_t* tensor_84, float32_t* tensor_148, float32_t* experiments, int num_experiments, int num_modules, int curr_exp);

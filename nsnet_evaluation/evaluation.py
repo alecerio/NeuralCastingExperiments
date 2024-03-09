@@ -121,7 +121,7 @@ fc2matmul = []
 fc2add = []
 sigmoidsigmoid = []
 
-path = '/home/alessandro/Desktop/exp/NeuralCastingExperiments/nsnet_H50/'
+path = '/home/alessandro/Desktop/exp/NeuralCastingExperiments/nsnet_H100/'
 filename = 'output.txt'
 numbers = read_numbers_from_file(path+filename)
 
@@ -176,4 +176,4 @@ for i in range(15, NUM_EXPERIMENTS*NUM_MODULES, NUM_MODULES):
 for i in range(16, NUM_EXPERIMENTS*NUM_MODULES, NUM_MODULES):
     sigmoidsigmoid.append(numbers[i])
 
-plot_data('stddev', fc1matmul, fc1add, gru1transpose, gru1gru, gru1squeeze, gru2gru, gru2squeeze, gru2transpose, fc3matmul, fc3add, relurelu, fc4matmul, fc4add, relu1relu, fc2matmul, fc2add, sigmoidsigmoid)
+plot_data('avg', fc1matmul, fc1add, gru1transpose, gru1gru, gru1squeeze, gru2gru, gru2squeeze, gru2transpose, fc3matmul, fc3add, relurelu, fc4matmul, fc4add, relu1relu, fc2matmul, fc2add, sigmoidsigmoid)
