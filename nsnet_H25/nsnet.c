@@ -56,7 +56,7 @@ free(tensor_onnxMatMul_207);
 }
 
 void run_inference(float32_t* tensor_onnxMatMul_0, float32_t* tensor_hidden1, float32_t* tensor_hidden, float32_t* tensor_163, float32_t* tensor_84, float32_t* tensor_148, float32_t* experiments, int num_experiments, int num_modules, int curr_exp) {
-omp_set_num_threads(8);
+omp_set_num_threads(4);
 
 #ifdef COMPILER_BENCHMARK
 double neuralcasting_time_benchmark = 0.0f;
