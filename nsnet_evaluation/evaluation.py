@@ -121,8 +121,9 @@ fc2matmul = []
 fc2add = []
 sigmoidsigmoid = []
 
+path = '/home/alessandro/Desktop/exp/NeuralCastingExperiments/nsnet_H50/'
 filename = 'output.txt'
-numbers = read_numbers_from_file(filename)
+numbers = read_numbers_from_file(path+filename)
 
 for i in range(0, NUM_EXPERIMENTS*NUM_MODULES, NUM_MODULES):
     fc1matmul.append(numbers[i])
