@@ -1,1 +1,1 @@
-gcc -O3 -o nsnet main.c nsnet.c -lm -fopenmp
+gcc -O3 -o nsnet main.c nsnet.c -lm -fopenmp -D COMPILER_BENCHMARK
