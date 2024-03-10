@@ -55,7 +55,7 @@ free(tensor_onnxMatMul_206);
 free(tensor_onnxMatMul_207);
 }
 
-void run_inference(float32_t* tensor_onnxMatMul_0, float32_t* tensor_hidden1, float32_t* tensor_hidden, float32_t* tensor_163, float32_t* tensor_84, float32_t* tensor_148) {
+void run_inference(float32_t* tensor_onnxMatMul_0, float32_t* tensor_hidden1, float32_t* tensor_hidden, float32_t* tensor_163, float32_t* tensor_84, float32_t* tensor_148, float32_t* experiments, int num_experiments, int num_modules, int curr_exp) {
 omp_set_num_threads(4);
 
 #ifdef COMPILER_BENCHMARK
@@ -95,7 +95,9 @@ for(int32_t i=0; i<1; i++) {
 }
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc1MatMul", 764)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC1MATMUL] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -136,7 +138,9 @@ tensor_fc1Add_output_0[i1*250 + i2*1] = tensor_fc1bias[i2*1] + tensor_fc1MatMul_
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc1Add", 500)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC1ADD] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -171,7 +175,9 @@ tensor_gru1Transpose_output_0[i0*(1*250)+i2*(1)] = tensor_fc1Add_output_0[i1*250
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_/gru1/Transpose", 0)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + GRU1TRANSPOSE] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -312,7 +318,9 @@ neuralcasting_start_benchmark = omp_get_wtime();
 }
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_/gru1/GRU", 757000)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + GRU1GRU] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -346,7 +354,9 @@ for(int i=0; i<250; i++) {
 #endif
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_/gru1/Squeeze", 0)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + GRU1SQUEEZE] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -487,7 +497,9 @@ neuralcasting_start_benchmark = omp_get_wtime();
 }
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_/gru2/GRU", 757000)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + GRU2GRU] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -521,7 +533,9 @@ for(int i=0; i<250; i++) {
 #endif
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_/gru2/Squeeze", 0)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + GRU2SQUEEZE] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -556,7 +570,9 @@ tensor_gru2Transpose_output_0[i0*(1*250)+i2*(1)] = tensor_gru2Squeeze_output_0[i
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_/gru2/Transpose", 0)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + GRU2TRANSPOSE] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -597,7 +613,9 @@ for(int32_t i=0; i<1; i++) {
 }
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc3MatMul", 1100)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC3MATMUL] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -638,7 +656,9 @@ tensor_fc3Add_output_0[i1*600 + i2*1] = tensor_fc3bias[i2*1] + tensor_fc3MatMul_
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc3Add", 1200)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC3ADD] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -674,7 +694,9 @@ tensor_reluRelu_output_0[i1*600 + i2*1] = tensor_fc3Add_output_0[i1*600 + i2*1] 
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_reluRelu", 0)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + RELURELU] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -715,7 +737,9 @@ for(int32_t i=0; i<1; i++) {
 }
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc4MatMul", 1800)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC4MATMUL] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -756,7 +780,9 @@ tensor_fc4Add_output_0[i1*600 + i2*1] = tensor_fc4bias[i2*1] + tensor_fc4MatMul_
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc4Add", 1200)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC4ADD] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -792,7 +818,9 @@ tensor_relu_1Relu_output_0[i1*600 + i2*1] = tensor_fc4Add_output_0[i1*600 + i2*1
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_relu_1Relu", 0)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + RELU1RELU] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -833,7 +861,9 @@ for(int32_t i=0; i<1; i++) {
 }
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc2MatMul", 1457)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC2MATMUL] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -874,7 +904,9 @@ tensor_fc2Add_output_0[i1*257 + i2*1] = tensor_fc2bias[i2*1] + tensor_fc2MatMul_
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_fc2Add", 514)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + FC2ADD] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG
@@ -911,7 +943,9 @@ tensor_163[i1*257 + i2*1] = ex / (1.0f + ex);
 
 
 #ifdef COMPILER_BENCHMARK
-BENCHMARK("tensor_sigmoidSigmoid", 1542)
+neuralcasting_end_benchmark = omp_get_wtime();
+neuralcasting_time_benchmark = neuralcasting_end_benchmark - neuralcasting_start_benchmark;
+experiments[curr_exp * num_modules + SIGMOIDSIGMOID] = neuralcasting_time_benchmark;
 #endif
 
 #ifdef COMPILER_DEBUG

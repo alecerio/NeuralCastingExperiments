@@ -121,7 +121,7 @@ fc2matmul = []
 fc2add = []
 sigmoidsigmoid = []
 
-path = '/home/alessandro/Desktop/exp/NeuralCastingExperiments/nsnet_H200/'
+path = '/home/alessandro/Desktop/exp/NeuralCastingExperiments/nsnet_H250/'
 filename = 'output.txt'
 numbers = read_numbers_from_file(path+filename)
 
