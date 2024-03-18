@@ -1,0 +1,1 @@
+g++ -O3 -o nsnet main.cpp -I ./include/ -L ./ ./libonnxruntime.so.1.6.0 -fopenmp
