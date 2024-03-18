@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-import math
 import numpy as np
+import os
 
 def read_numbers_from_file(filename):
     numbers = []
@@ -121,7 +121,8 @@ fc2matmul = []
 fc2add = []
 sigmoidsigmoid = []
 
-path = '/home/alessandro/Desktop/exp/NeuralCastingExperiments/nsnet_H400/'
+script_directory = os.path.dirname(os.path.abspath(__file__))
+path = script_directory + '/../nsnet_100_400/'
 filename = 'output.txt'
 numbers = read_numbers_from_file(path+filename)
 
